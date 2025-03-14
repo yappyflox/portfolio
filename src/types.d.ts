@@ -4,13 +4,13 @@ declare module '*.tsx'
 declare module '*.ts'
 
 // App and theme declarations
-declare module 'App' {
+declare module '@/App' {
   import { FC } from 'react'
   const App: FC
   export default App
 }
 
-declare module 'theme' {
+declare module '@/theme' {
   import { ThemeConfig, Theme } from '@chakra-ui/react'
   const theme: Theme & { config: ThemeConfig }
   export default theme
