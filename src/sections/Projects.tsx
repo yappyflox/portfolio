@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Box, Container, Heading, Text, VStack, HStack, useColorModeValue, Image, Icon, Button, Flex } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, HStack, useColorModeValue, Image, Icon, Button, Flex, Stack } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { FaArrowRight, FaChartLine, FaUsers, FaRocket } from 'react-icons/fa'
 
@@ -44,28 +44,30 @@ const Projects: React.FC = () => {
   ]
 
   return (
-    <Box as="section" id="projects" py={20} bg={bgColor}>
-      <Container maxW="container.xl">
-        <VStack spacing={12} align="center">
+    <Box as="section" id="projects" py={{ base: 12, md: 20 }} bg={bgColor}>
+      <Container maxW="container.xl" px={{ base: 4, md: 8 }}>
+        <VStack spacing={{ base: 8, md: 12 }} align="center">
           <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             textAlign="center"
+            w="full"
+            px={{ base: 4, md: 0 }}
           >
-            <Text color={accentColor} fontWeight="bold" fontSize="lg" mb={2}>
+            <Text color={accentColor} fontWeight="bold" fontSize={{ base: "md", md: "lg" }} mb={2}>
               Featured Projects
             </Text>
-            <Heading as="h2" size="2xl" color={textColor} mb={4}>
+            <Heading as="h2" size={{ base: "xl", md: "2xl" }} color={textColor} mb={4}>
               Product Success Stories
             </Heading>
-            <Text fontSize="lg" color={textColor} opacity={0.8} maxW="800px">
+            <Text fontSize={{ base: "md", md: "lg" }} color={textColor} opacity={0.8} maxW="800px">
               A collection of successful product launches and transformations I've led
             </Text>
           </MotionBox>
 
-          <VStack spacing={12} w="full">
+          <VStack spacing={{ base: 8, md: 12 }} w="full">
             {projects.map((project, index) => (
               <MotionBox
                 key={index}
@@ -76,33 +78,56 @@ const Projects: React.FC = () => {
                 w="full"
               >
                 <Box
-                  p={6}
+                  p={{ base: 4, md: 6 }}
                   borderRadius="lg"
                   bg={useColorModeValue('gray.50', 'gray.700')}
                   _hover={{ transform: 'translateY(-4px)', transition: 'all 0.2s' }}
                 >
-                  <HStack spacing={8} align="start">
-                    <Box flex={1}>
+                  <Stack 
+                    direction={{ base: "column", md: "row" }} 
+                    spacing={{ base: 6, md: 8 }} 
+                    align={{ base: "center", md: "start" }}
+                  >
+                    <Box flex={1} maxW={{ base: "100%", md: "400px" }}>
                       <Image
                         src={project.image}
                         alt={project.title}
                         borderRadius="lg"
-                        maxW="400px"
-                        fallback={<Box w="400px" h="300px" bg={accentColor} opacity={0.1} borderRadius="lg" />}
+                        w="full"
+                        h={{ base: "200px", md: "300px" }}
+                        objectFit="cover"
+                        fallback={
+                          <Box 
+                            w="full" 
+                            h={{ base: "200px", md: "300px" }} 
+                            bg={accentColor} 
+                            opacity={0.1} 
+                            borderRadius="lg" 
+                          />
+                        }
                       />
                     </Box>
-                    <VStack flex={1} align="start" spacing={4}>
-                      <Heading as="h3" size="xl" color={textColor}>
+                    <VStack flex={1} align="start" spacing={{ base: 3, md: 4 }}>
+                      <Heading as="h3" size={{ base: "lg", md: "xl" }} color={textColor}>
                         {project.title}
                       </Heading>
-                      <Text color={textColor} opacity={0.8}>
+                      <Text 
+                        fontSize={{ base: "md", md: "lg" }} 
+                        color={textColor} 
+                        opacity={0.8}
+                      >
                         {project.description}
                       </Text>
-                      <VStack align="start" spacing={2}>
+                      <VStack align="start" spacing={{ base: 2, md: 2 }} w="full">
                         {project.metrics.map((metric, idx) => (
                           <Flex key={idx} align="center" gap={2}>
-                            <Icon as={metric.icon} color={accentColor} />
-                            <Text color={textColor}>{metric.label}</Text>
+                            <Icon as={metric.icon} color={accentColor} w={{ base: 4, md: 5 }} h={{ base: 4, md: 5 }} />
+                            <Text 
+                              color={textColor}
+                              fontSize={{ base: "sm", md: "md" }}
+                            >
+                              {metric.label}
+                            </Text>
                           </Flex>
                         ))}
                       </VStack>
@@ -110,12 +135,13 @@ const Projects: React.FC = () => {
                         rightIcon={<FaArrowRight />}
                         colorScheme="brand"
                         variant="ghost"
-                        size="sm"
+                        size={{ base: "sm", md: "md" }}
+                        mt={{ base: 2, md: 4 }}
                       >
                         Learn More
                       </Button>
                     </VStack>
-                  </HStack>
+                  </Stack>
                 </Box>
               </MotionBox>
             ))}

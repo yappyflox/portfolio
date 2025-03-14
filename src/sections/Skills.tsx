@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Box, Container, Heading, Text, VStack, HStack, useColorModeValue, Icon, SimpleGrid } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, useColorModeValue, Icon, SimpleGrid } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { FaChartLine, FaUsers, FaLightbulb, FaTasks, FaChartBar, FaHandshake } from 'react-icons/fa'
 
@@ -44,28 +44,34 @@ const Skills: React.FC = () => {
   ]
 
   return (
-    <Box as="section" id="skills" py={20} bg={bgColor}>
-      <Container maxW="container.xl">
-        <VStack spacing={12} align="center">
+    <Box as="section" id="skills" py={{ base: 12, md: 20 }} bg={bgColor}>
+      <Container maxW="container.xl" px={{ base: 4, md: 8 }}>
+        <VStack spacing={{ base: 8, md: 12 }} align="center">
           <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             textAlign="center"
+            w="full"
+            px={{ base: 4, md: 0 }}
           >
-            <Text color={accentColor} fontWeight="bold" fontSize="lg" mb={2}>
+            <Text color={accentColor} fontWeight="bold" fontSize={{ base: "md", md: "lg" }} mb={2}>
               Skills & Expertise
             </Text>
-            <Heading as="h2" size="2xl" color={textColor} mb={4}>
+            <Heading as="h2" size={{ base: "xl", md: "2xl" }} color={textColor} mb={4}>
               Product Management
             </Heading>
-            <Text fontSize="lg" color={textColor} opacity={0.8} maxW="800px">
+            <Text fontSize={{ base: "md", md: "lg" }} color={textColor} opacity={0.8} maxW="800px">
               I bring a unique blend of technical knowledge and business acumen to drive product success
             </Text>
           </MotionBox>
 
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8} w="full">
+          <SimpleGrid 
+            columns={{ base: 1, sm: 2, lg: 3 }} 
+            spacing={{ base: 4, md: 8 }} 
+            w="full"
+          >
             {skills.map((skill, index) => (
               <MotionBox
                 key={index}
@@ -75,17 +81,32 @@ const Skills: React.FC = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <Box
-                  p={6}
+                  p={{ base: 4, md: 6 }}
                   borderRadius="lg"
                   bg={useColorModeValue('gray.50', 'gray.700')}
                   _hover={{ transform: 'translateY(-4px)', transition: 'all 0.2s' }}
                   height="100%"
                 >
-                  <Icon as={skill.icon} w={8} h={8} color={accentColor} mb={4} />
-                  <Text fontWeight="bold" color={textColor} mb={2} fontSize="xl">
+                  <Icon 
+                    as={skill.icon} 
+                    w={{ base: 6, md: 8 }} 
+                    h={{ base: 6, md: 8 }} 
+                    color={accentColor} 
+                    mb={{ base: 3, md: 4 }} 
+                  />
+                  <Text 
+                    fontWeight="bold" 
+                    color={textColor} 
+                    mb={{ base: 1, md: 2 }} 
+                    fontSize={{ base: "lg", md: "xl" }}
+                  >
                     {skill.title}
                   </Text>
-                  <Text color={textColor} opacity={0.8}>
+                  <Text 
+                    color={textColor} 
+                    opacity={0.8}
+                    fontSize={{ base: "sm", md: "md" }}
+                  >
                     {skill.description}
                   </Text>
                 </Box>

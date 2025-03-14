@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Box, Container, Heading, Text, VStack, HStack, useColorModeValue, Icon, Button, Input, Textarea, FormControl, FormLabel } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, HStack, useColorModeValue, Icon, Button, Input, Textarea, FormControl, FormLabel, Stack } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { FaLinkedin, FaGithub, FaEnvelope, FaTwitter } from 'react-icons/fa'
 
@@ -35,50 +35,56 @@ const Contact: React.FC = () => {
   ]
 
   return (
-    <Box as="section" id="contact" py={20} bg={bgColor}>
-      <Container maxW="container.xl">
-        <VStack spacing={12} align="center">
+    <Box as="section" id="contact" py={{ base: 12, md: 20 }} bg={bgColor}>
+      <Container maxW="container.xl" px={{ base: 4, md: 8 }}>
+        <VStack spacing={{ base: 8, md: 12 }} align="center">
           <MotionBox
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             textAlign="center"
+            w="full"
+            px={{ base: 4, md: 0 }}
           >
-            <Text color={accentColor} fontWeight="bold" fontSize="lg" mb={2}>
+            <Text color={accentColor} fontWeight="bold" fontSize={{ base: "md", md: "lg" }} mb={2}>
               Let's Connect
             </Text>
-            <Heading as="h2" size="2xl" color={textColor} mb={4}>
+            <Heading as="h2" size={{ base: "xl", md: "2xl" }} color={textColor} mb={4}>
               Product Collaboration
             </Heading>
-            <Text fontSize="lg" color={textColor} opacity={0.8} maxW="800px">
+            <Text fontSize={{ base: "md", md: "lg" }} color={textColor} opacity={0.8} maxW="800px">
               Interested in discussing product strategy, user experience, or potential collaborations? Let's connect and explore opportunities together.
             </Text>
           </MotionBox>
 
-          <Box w="full" maxW="800px">
-            <VStack spacing={8} w="full">
-              <FormControl>
-                <FormLabel color={textColor}>Name</FormLabel>
-                <Input
-                  type="text"
-                  placeholder="Your name"
-                  bg={inputBg}
-                  border="none"
-                  _focus={{ boxShadow: `0 0 0 2px ${accentColor}` }}
-                />
-              </FormControl>
+          <Box w="full" maxW="800px" px={{ base: 4, md: 0 }}>
+            <VStack spacing={{ base: 6, md: 8 }} w="full">
+              <Stack direction={{ base: "column", md: "row" }} w="full" spacing={{ base: 6, md: 4 }}>
+                <FormControl flex={1}>
+                  <FormLabel color={textColor}>Name</FormLabel>
+                  <Input
+                    type="text"
+                    placeholder="Your name"
+                    bg={inputBg}
+                    border="none"
+                    _focus={{ boxShadow: `0 0 0 2px ${accentColor}` }}
+                    size={{ base: "md", md: "lg" }}
+                  />
+                </FormControl>
 
-              <FormControl>
-                <FormLabel color={textColor}>Email</FormLabel>
-                <Input
-                  type="email"
-                  placeholder="your.email@example.com"
-                  bg={inputBg}
-                  border="none"
-                  _focus={{ boxShadow: `0 0 0 2px ${accentColor}` }}
-                />
-              </FormControl>
+                <FormControl flex={1}>
+                  <FormLabel color={textColor}>Email</FormLabel>
+                  <Input
+                    type="email"
+                    placeholder="your.email@example.com"
+                    bg={inputBg}
+                    border="none"
+                    _focus={{ boxShadow: `0 0 0 2px ${accentColor}` }}
+                    size={{ base: "md", md: "lg" }}
+                  />
+                </FormControl>
+              </Stack>
 
               <FormControl>
                 <FormLabel color={textColor}>Message</FormLabel>
@@ -88,12 +94,13 @@ const Contact: React.FC = () => {
                   border="none"
                   _focus={{ boxShadow: `0 0 0 2px ${accentColor}` }}
                   rows={6}
+                  size={{ base: "md", md: "lg" }}
                 />
               </FormControl>
 
               <Button
                 colorScheme="brand"
-                size="lg"
+                size={{ base: "md", md: "lg" }}
                 w="full"
                 _hover={{ transform: 'translateY(-2px)', boxShadow: 'lg' }}
               >
@@ -102,11 +109,16 @@ const Contact: React.FC = () => {
             </VStack>
           </Box>
 
-          <VStack spacing={6}>
-            <Text fontSize="lg" fontWeight="bold" color={textColor}>
+          <VStack spacing={{ base: 4, md: 6 }}>
+            <Text fontSize={{ base: "md", md: "lg" }} fontWeight="bold" color={textColor}>
               Or connect with me on social media
             </Text>
-            <HStack spacing={4}>
+            <Stack 
+              direction={{ base: "row", md: "row" }} 
+              spacing={{ base: 3, md: 4 }}
+              flexWrap="wrap"
+              justify="center"
+            >
               {socialLinks.map((link, index) => (
                 <MotionBox
                   key={index}
@@ -123,14 +135,14 @@ const Contact: React.FC = () => {
                     aria-label={link.label}
                     colorScheme="brand"
                     variant="ghost"
-                    size="lg"
+                    size={{ base: "md", md: "lg" }}
                     _hover={{ transform: 'translateY(-2px)' }}
                   >
-                    <Icon as={link.icon} w={6} h={6} />
+                    <Icon as={link.icon} w={{ base: 5, md: 6 }} h={{ base: 5, md: 6 }} />
                   </Button>
                 </MotionBox>
               ))}
-            </HStack>
+            </Stack>
           </VStack>
         </VStack>
       </Container>
