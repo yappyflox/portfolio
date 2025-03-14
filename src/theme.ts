@@ -1,24 +1,36 @@
 import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
 
 const config: ThemeConfig = {
-  initialColorMode: 'dark',
-  useSystemColorMode: true,
+  initialColorMode: 'light',
+  useSystemColorMode: false,
 }
 
 const theme = extendTheme({
   config,
   colors: {
     brand: {
-      50: '#f0f9ff',
-      100: '#e0f2fe',
-      200: '#bae6fd',
-      300: '#7dd3fc',
-      400: '#38bdf8',
-      500: '#0ea5e9',
-      600: '#0284c7',
-      700: '#0369a1',
-      800: '#075985',
-      900: '#0c4a6e',
+      50: '#f2f5f3',
+      100: '#e4e9e6',
+      200: '#c8d3cc',
+      300: '#a7b8ad',
+      400: '#859c8d',
+      500: '#68806f', // Main sage green
+      600: '#4d6153',
+      700: '#3c4b41',
+      800: '#2b362f',
+      900: '#1a211c',
+    },
+    sage: {
+      50: '#f4f7f4',
+      100: '#e6ebe6',
+      200: '#ccd8cd',
+      300: '#b1c4b3',
+      400: '#95ad98',
+      500: '#7a967d', // Lighter sage green
+      600: '#5f7961',
+      700: '#4b5f4c',
+      800: '#374538',
+      900: '#222b23',
     },
   },
   fonts: {
@@ -28,15 +40,15 @@ const theme = extendTheme({
   styles: {
     global: (props: any) => ({
       body: {
-        bg: props.colorMode === 'dark' ? 'gray.900' : 'gray.50',
-        color: props.colorMode === 'dark' ? 'white' : 'gray.800',
+        bg: props.colorMode === 'dark' ? 'sage.900' : 'white',
+        color: props.colorMode === 'dark' ? 'sage.50' : 'gray.800',
       },
     }),
   },
   components: {
     Button: {
       defaultProps: {
-        colorScheme: 'brand',
+        colorScheme: 'sage',
       },
     },
     Container: {

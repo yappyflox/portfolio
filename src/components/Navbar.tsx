@@ -32,10 +32,11 @@ const NavLink = ({ children, href, onClick }: NavLinkProps) => (
     href={href}
     fontSize={{ base: "md", md: "lg" }}
     fontWeight="medium"
-    color={useColorModeValue('gray.800', 'white')}
+    color={useColorModeValue('gray.800', 'sage.50')}
     _hover={{
       textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
+      bg: useColorModeValue('gray.100', 'sage.800'),
+      color: useColorModeValue('gray.900', 'white'),
     }}
     onClick={onClick}
   >
@@ -46,8 +47,8 @@ const NavLink = ({ children, href, onClick }: NavLinkProps) => (
 const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure()
   const { colorMode, toggleColorMode } = useColorMode()
-  const bgColor = useColorModeValue('white', 'gray.800')
-  const borderColor = useColorModeValue('gray.200', 'gray.700')
+  const bgColor = useColorModeValue('white', 'sage.900')
+  const borderColor = useColorModeValue('gray.200', 'sage.700')
 
   const Links = [
     { name: 'About', href: '#about' },
@@ -66,7 +67,12 @@ const Navbar = () => {
       bg={bgColor}
       borderBottom="1px"
       borderColor={borderColor}
-      transition="background-color 0.2s"
+      transition="all 0.2s"
+      backdropFilter="blur(10px)"
+      backgroundColor={useColorModeValue(
+        'rgba(255, 255, 255, 0.8)',
+        'rgba(34, 43, 35, 0.8)'
+      )}
     >
       <Container maxW="container.xl">
         <Flex
@@ -80,9 +86,9 @@ const Navbar = () => {
             <Text
               fontSize={{ base: "xl", md: "2xl" }}
               fontWeight="bold"
-              color={useColorModeValue('gray.800', 'white')}
+              color={useColorModeValue('gray.800', 'sage.50')}
               _hover={{
-                color: useColorModeValue('brand.500', 'brand.300'),
+                color: useColorModeValue('sage.600', 'sage.300'),
               }}
               cursor="pointer"
               as="a"
@@ -100,6 +106,10 @@ const Navbar = () => {
               variant="ghost"
               mr={{ base: 2, md: 4 }}
               size={{ base: "sm", md: "md" }}
+              color={useColorModeValue('gray.800', 'sage.50')}
+              _hover={{
+                bg: useColorModeValue('gray.100', 'sage.800'),
+              }}
             />
 
             <IconButton
@@ -109,6 +119,10 @@ const Navbar = () => {
               variant="ghost"
               aria-label="Toggle navigation"
               size={{ base: "sm", md: "md" }}
+              color={useColorModeValue('gray.800', 'sage.50')}
+              _hover={{
+                bg: useColorModeValue('gray.100', 'sage.800'),
+              }}
             />
 
             <HStack spacing={4} display={{ base: 'none', md: 'flex' }}>

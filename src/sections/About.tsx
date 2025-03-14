@@ -5,9 +5,10 @@ import { motion } from 'framer-motion'
 const MotionBox = motion(Box)
 
 const About: React.FC = () => {
-  const textColor = useColorModeValue('gray.800', 'white')
-  const bgColor = useColorModeValue('white', 'gray.800')
-  const accentColor = useColorModeValue('brand.500', 'brand.300')
+  const textColor = useColorModeValue('gray.800', 'sage.50')
+  const bgColor = useColorModeValue('white', 'sage.900')
+  const accentColor = useColorModeValue('sage.600', 'sage.400')
+  const statsBg = useColorModeValue('gray.50', 'sage.800')
 
   return (
     <Box as="section" id="about" py={{ base: 12, md: 20 }} bg={bgColor}>
@@ -88,69 +89,47 @@ const About: React.FC = () => {
               spacing={{ base: 4, md: 6 }} 
               w="full"
             >
-              <MotionBox
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Box>
-                  <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="bold" color={textColor} mb={1}>
-                    Experience
-                  </Text>
-                  <Text fontSize={{ base: "md", md: "lg" }} color={textColor} opacity={0.8}>
-                    5+ Years in Product
-                  </Text>
-                </Box>
-              </MotionBox>
-
-              <MotionBox
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <Box>
-                  <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="bold" color={textColor} mb={1}>
-                    Projects Delivered
-                  </Text>
-                  <Text fontSize={{ base: "md", md: "lg" }} color={textColor} opacity={0.8}>
-                    20+ Successful Products
-                  </Text>
-                </Box>
-              </MotionBox>
-
-              <MotionBox
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
-                <Box>
-                  <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="bold" color={textColor} mb={1}>
-                    Industries
-                  </Text>
-                  <Text fontSize={{ base: "md", md: "lg" }} color={textColor} opacity={0.8}>
-                    Tech, E-commerce, SaaS
-                  </Text>
-                </Box>
-              </MotionBox>
-
-              <MotionBox
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              >
-                <Box>
-                  <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="bold" color={textColor} mb={1}>
-                    Team Leadership
-                  </Text>
-                  <Text fontSize={{ base: "md", md: "lg" }} color={textColor} opacity={0.8}>
-                    Led 10+ Agile Teams
-                  </Text>
-                </Box>
-              </MotionBox>
+              {[
+                {
+                  title: "Experience",
+                  value: "5+ Years in Product"
+                },
+                {
+                  title: "Projects Delivered",
+                  value: "20+ Successful Products"
+                },
+                {
+                  title: "Industries",
+                  value: "Tech, E-commerce, SaaS"
+                },
+                {
+                  title: "Team Leadership",
+                  value: "Led 10+ Agile Teams"
+                }
+              ].map((stat, index) => (
+                <MotionBox
+                  key={stat.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                >
+                  <Box
+                    p={4}
+                    bg={statsBg}
+                    borderRadius="lg"
+                    transition="all 0.2s"
+                    _hover={{ transform: 'translateY(-2px)', shadow: 'md' }}
+                  >
+                    <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="bold" color={textColor} mb={1}>
+                      {stat.title}
+                    </Text>
+                    <Text fontSize={{ base: "md", md: "lg" }} color={textColor} opacity={0.8}>
+                      {stat.value}
+                    </Text>
+                  </Box>
+                </MotionBox>
+              ))}
             </SimpleGrid>
           </VStack>
         </Stack>
