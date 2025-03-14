@@ -1,45 +1,19 @@
-import React from 'react'
-import { Box, Flex, Link, useColorMode, IconButton, Container } from '@chakra-ui/react'
-import { FaSun, FaMoon } from 'react-icons/fa'
+import * as React from 'react'
+import { Box, Flex, Link, Spacer } from '@chakra-ui/react'
 
-const Navbar = () => {
-  const { colorMode, toggleColorMode } = useColorMode()
-
+const Navbar: React.FC = () => {
   return (
-    <Box 
-      position="fixed" 
-      top={0} 
-      width="100%" 
-      zIndex={1000} 
-      bg={colorMode === 'light' ? 'white' : 'gray.800'}
-      boxShadow="sm"
-    >
-      <Container maxW="container.lg">
-        <Flex px={4} py={4} justifyContent="space-between" alignItems="center">
-          <Link 
-            href="#" 
-            fontSize="xl" 
-            fontWeight="bold"
-            _hover={{ textDecoration: 'none' }}
-          >
-            Your Name
-          </Link>
-          
-          <Flex gap={8} alignItems="center">
-            <Link href="#about" _hover={{ color: 'blue.500' }}>About</Link>
-            <Link href="#skills" _hover={{ color: 'blue.500' }}>Skills</Link>
-            <Link href="#projects" _hover={{ color: 'blue.500' }}>Projects</Link>
-            <Link href="#contact" _hover={{ color: 'blue.500' }}>Contact</Link>
-            <IconButton
-              aria-label="Toggle color mode"
-              icon={colorMode === 'light' ? <FaMoon /> : <FaSun />}
-              onClick={toggleColorMode}
-              variant="ghost"
-              _hover={{ bg: colorMode === 'light' ? 'gray.100' : 'gray.700' }}
-            />
-          </Flex>
+    <Box as="nav" position="fixed" w="100%" bg="white" boxShadow="sm" zIndex="sticky">
+      <Flex maxW="container.xl" mx="auto" px={4} py={4}>
+        <Link href="#" fontWeight="bold" fontSize="xl">Portfolio</Link>
+        <Spacer />
+        <Flex gap={8}>
+          <Link href="#about">About</Link>
+          <Link href="#skills">Skills</Link>
+          <Link href="#projects">Projects</Link>
+          <Link href="#contact">Contact</Link>
         </Flex>
-      </Container>
+      </Flex>
     </Box>
   )
 }
