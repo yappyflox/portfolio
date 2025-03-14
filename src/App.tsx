@@ -7,7 +7,7 @@ import Skills from './sections/Skills'
 import Projects from './sections/Projects'
 import Contact from './sections/Contact'
 
-function App() {
+const App: React.FC = () => {
   return (
     <Box>
       <Navbar />
