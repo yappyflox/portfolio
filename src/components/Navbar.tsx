@@ -1,5 +1,6 @@
 // @ts-nocheck
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 import {
   Box,
   Flex,
@@ -8,7 +9,6 @@ import {
   useColorModeValue,
   Stack,
   Container,
-  Link,
   Text,
   HStack
 } from '@chakra-ui/react'
@@ -22,24 +22,24 @@ interface NavLinkProps {
 }
 
 const NavLink = ({ children, href, onClick }: NavLinkProps) => (
-  <Box
-    as="a"
-    px={2}
-    py={1}
-    rounded="md"
-    href={href}
-    fontSize={{ base: "md", md: "lg" }}
-    fontWeight="medium"
-    color={useColorModeValue('gray.800', 'sage.50')}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.100', 'sage.800'),
-      color: useColorModeValue('gray.900', 'white'),
-    }}
-    onClick={onClick}
-  >
-    {children}
-  </Box>
+  <Link to={href.replace('#', '')}>
+    <Box
+      px={2}
+      py={1}
+      rounded="md"
+      fontSize={{ base: "md", md: "lg" }}
+      fontWeight="medium"
+      color={useColorModeValue('gray.800', 'sage.50')}
+      _hover={{
+        textDecoration: 'none',
+        bg: useColorModeValue('gray.100', 'sage.800'),
+        color: useColorModeValue('gray.900', 'white'),
+      }}
+      onClick={onClick}
+    >
+      {children}
+    </Box>
+  </Link>
 )
 
 const Navbar = () => {
@@ -80,19 +80,19 @@ const Navbar = () => {
           justify="space-between"
         >
           <Flex align="center">
-            <Text
-              fontSize={{ base: "xl", md: "2xl" }}
-              fontWeight="bold"
-              color={useColorModeValue('gray.800', 'sage.50')}
-              _hover={{
-                color: useColorModeValue('sage.600', 'sage.300'),
-              }}
-              cursor="pointer"
-              as="a"
-              href="#"
-            >
-              PM Portfolio
-            </Text>
+            <Link to="/">
+              <Text
+                fontSize={{ base: "xl", md: "2xl" }}
+                fontWeight="bold"
+                color={useColorModeValue('gray.800', 'sage.50')}
+                _hover={{
+                  color: useColorModeValue('sage.600', 'sage.300'),
+                }}
+                cursor="pointer"
+              >
+                PM Portfolio
+              </Text>
+            </Link>
           </Flex>
 
           <Flex align="center">
