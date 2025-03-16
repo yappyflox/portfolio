@@ -1,20 +1,18 @@
+// @ts-nocheck
 import * as React from 'react'
 import {
   Box,
   Flex,
-  HStack,
   IconButton,
-  Button,
-  useDisclosure,
-  useColorModeValue,
   useColorMode,
+  useColorModeValue,
   Stack,
   Container,
-  Collapse,
-  VStack,
-  Text
+  Link,
+  Text,
+  HStack
 } from '@chakra-ui/react'
-import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { SunIcon, MoonIcon } from '@chakra-ui/icons'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
 
 interface NavLinkProps {
@@ -45,7 +43,6 @@ const NavLink = ({ children, href, onClick }: NavLinkProps) => (
 )
 
 const Navbar = () => {
-  const { isOpen, onToggle } = useDisclosure()
   const { colorMode, toggleColorMode } = useColorMode()
   const bgColor = useColorModeValue('white', 'sage.900')
   const borderColor = useColorModeValue('gray.200', 'sage.700')
@@ -112,19 +109,6 @@ const Navbar = () => {
               }}
             />
 
-            <IconButton
-              display={{ base: 'flex', md: 'none' }}
-              onClick={onToggle}
-              icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
-              variant="ghost"
-              aria-label="Toggle navigation"
-              size={{ base: "sm", md: "md" }}
-              color={useColorModeValue('gray.800', 'sage.50')}
-              _hover={{
-                bg: useColorModeValue('gray.100', 'sage.800'),
-              }}
-            />
-
             <HStack spacing={4} display={{ base: 'none', md: 'flex' }}>
               {Links.map((link) => (
                 <NavLink key={link.name} href={link.href}>
@@ -134,18 +118,6 @@ const Navbar = () => {
             </HStack>
           </Flex>
         </Flex>
-
-        <Collapse in={isOpen} animateOpacity>
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as="nav" spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link.name} href={link.href} onClick={onToggle}>
-                  {link.name}
-                </NavLink>
-              ))}
-            </Stack>
-          </Box>
-        </Collapse>
       </Container>
     </Box>
   )

@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { Box, Container, Heading, Text, VStack, HStack, useColorModeValue, Icon, Button, Input, Textarea, FormControl, FormLabel, Stack } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, useColorModeValue, Icon, Button, Input, Textarea, FormControl, FormLabel, Stack } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import { FaLinkedin, FaGithub, FaEnvelope, FaTwitter } from 'react-icons/fa'
 
